@@ -1,21 +1,35 @@
-//
-//  ContentView.swift
-//  SwiftUIFundamentalsExample
-//
-//  Created by T66079 on 26.01.2023.
-//
-
 import SwiftUI
 
 struct ContentView: View {
+    @State private var date = Date()
+    @State private var vibrateOnRing = false
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            HStack{
+                Image(systemName: "swift")
+                    .resizable()
+                    .padding(.all, 35)
+                    .frame(width: 100.0, height: 100.0)
+                DatePicker(
+                        "Start Date",
+                        selection: $date,
+                        displayedComponents: [.date]
+                    )
+            }
+                .padding([.leading, .bottom, .trailing], 15)
+            if vibrateOnRing == false {
+                Text("Hello Kaan, How are you today?")
+                    .padding([.leading, .bottom, .trailing], 45)
+                    .fontWeight(.bold)
+            } else {
+                Text("Good Morning")
+                    .padding([.leading, .bottom, .trailing], 45)
+                    .fontWeight(.bold)
+            }
+                Toggle("Vibrate on Ring", isOn: $vibrateOnRing)
+                    .padding([.leading, .bottom, .trailing], 55.0)
         }
-        .padding()
     }
 }
 
